@@ -8,6 +8,7 @@ const Todo = ({ allTodo, completeTodo }) => {
     //     text: ''
     // })
 
+    
 
     
     // console.log(allTodo)
