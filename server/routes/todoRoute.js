@@ -5,7 +5,7 @@ const {createTodo, fetchAllTodos, fetchTodo, updateTodo, deleteTodo  } = require
 route.post('/todos', createTodo)
 route.get('/todos', fetchAllTodos)
 route.get('/todos/:id', fetchTodo)
-route.put('/todos/:id', updateTodo)
+route.patch('/todos/:id', updateTodo)
 route.delete('/todos/:id', deleteTodo)
 
 module.exports = {route};

@@ -5,8 +5,8 @@ import Todo from './Todo';
 import TodoForm from './TodoForm';
 
 const TodoList = () => {
-    const [todos, setTodos] = useState([])
     const [allTodo , setAllTodo] = useState()
+
 
     // Todo Data added database
     const addTodo = todo => {
@@ -19,20 +19,32 @@ const TodoList = () => {
         .catch(error => console.log(error));
     }
 
+
+    const updateTodo = (todoId, newValue) => {
+        console.log(todoId, newValue)
+
+        axios.patch(`http://localhost:5000/api/todos/${todoId}`, newValue)
+            .then(response => response.data && swal("Successfully updated", "Your Todo is successfully updated!", "success"))
+            .catch(error => console.log(error));
+
+      };
+
+    // optional code here
     const completeTodo = id => {
-        let updateedTodos = todos.map(todo => {
-            if(todo.id === id){
-                // todo.isComplete
-            }
-        })
+        // let updateedTodos = allTodo.map(todo => {
+        //     if(todo.id === id){
+        //         // todo.isComplete
+        //     }
+        // })
     }
+
+
 
     useEffect(() =>{
         fetch('http://localhost:5000/api/todos')
         .then(res=> res.json())
         .then(data => {
             setAllTodo(data)
-            console.log(data)
         })
     },[])
 
@@ -44,6 +56,7 @@ const TodoList = () => {
                 allTodo={allTodo}
                 completeTodo={completeTodo}
                 setAllTodo={setAllTodo}
+                updateTodo={updateTodo}
             />
         </div>
     );

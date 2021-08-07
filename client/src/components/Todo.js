@@ -1,14 +1,19 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { TiEdit } from 'react-icons/ti';
+import TodoForm from './TodoForm';
 
 
-const Todo = ({ allTodo, completeTodo, setAllTodo }) => {
+const Todo = ({ allTodo, completeTodo, setAllTodo, updateTodo }) => {
+  const [edit, setEdit] = useState({
+    id: null,
+    text: ''
+  });
 
 
+  // delete Todo function
   const removeTodo =(id)=> {
-    console.log(id)
     const deleteItems = allTodo.filter(item => item._id !== id);
     
     axios.delete(`http://localhost:5000/api/todos/${id}`)
@@ -18,6 +23,18 @@ const Todo = ({ allTodo, completeTodo, setAllTodo }) => {
       .catch(error => {
           console.log(error);
       })
+  };
+
+  const submitUpdate = value => {
+    updateTodo(edit.id, value);
+    setEdit({
+      id: null,
+      text: ''
+    });
+  };
+
+  if (edit.id) {
+    return <TodoForm edit={edit} onSubmit={submitUpdate} />;
   }
 
     return (
@@ -37,7 +54,7 @@ const Todo = ({ allTodo, completeTodo, setAllTodo }) => {
                         className='delete-icon'
                       />
                       <TiEdit
-                        // onClick={() => setEdit({ id: todo.id, value: todo.text })}
+                        onClick={() => setEdit({ id: todo?._id, text: todo?.text })}
                         className='edit-icon'
                       />
                     </div>
