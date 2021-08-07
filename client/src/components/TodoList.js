@@ -41,16 +41,13 @@ const TodoList = () => {
 
 
     // all data call
-    setInterval((
-        useEffect(() =>{
-            fetch('http://localhost:5000/api/todos')
-            .then(res=> res.json())
-            .then(data => {
-                setAllTodo(data)
-            })
-        },[])
-
-    ),1000)
+    useEffect(() =>{
+        fetch('http://localhost:5000/api/todos')
+        .then(res=> res.json())
+        .then(data => {
+            setAllTodo(data)
+        })
+    },[])
     
 
     return (
