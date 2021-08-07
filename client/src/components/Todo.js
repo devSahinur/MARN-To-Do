@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { TiEdit } from 'react-icons/ti';
 import TodoForm from './TodoForm';
+import swal from 'sweetalert';
 
 
 const Todo = ({ allTodo, completeTodo, setAllTodo, updateTodo }) => {
@@ -18,11 +19,12 @@ const Todo = ({ allTodo, completeTodo, setAllTodo, updateTodo }) => {
     
     axios.delete(`http://localhost:5000/api/todos/${id}`)
     .then(response => {
-      response && setAllTodo(deleteItems);
+      response && setAllTodo(deleteItems) 
       })
       .catch(error => {
           console.log(error);
       })
+      swal("Successfully Deleted", "Your Todo is successfully Delete!", "success")
   };
 
   const submitUpdate = value => {

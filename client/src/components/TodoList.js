@@ -20,6 +20,7 @@ const TodoList = () => {
     }
 
 
+    // Update Todo data in Database
     const updateTodo = (todoId, newValue) => {
         console.log(todoId, newValue)
 
@@ -39,14 +40,18 @@ const TodoList = () => {
     }
 
 
+    // all data call
+    setInterval((
+        useEffect(() =>{
+            fetch('http://localhost:5000/api/todos')
+            .then(res=> res.json())
+            .then(data => {
+                setAllTodo(data)
+            })
+        },[])
 
-    useEffect(() =>{
-        fetch('http://localhost:5000/api/todos')
-        .then(res=> res.json())
-        .then(data => {
-            setAllTodo(data)
-        })
-    },[])
+    ),1000)
+    
 
     return (
         <div>
