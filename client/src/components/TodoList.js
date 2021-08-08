@@ -14,6 +14,8 @@ const TodoList = () => {
             return;
         }
 
+        setAllTodo([...allTodo, {text: todo.text }])
+
     axios.post('http://localhost:5000/api/todos', todo)
         .then(response => response.data && swal("Successfully Added", "Your Todo is successfully added!", "success"))
         .catch(error => console.log(error));
@@ -51,7 +53,7 @@ const TodoList = () => {
     
 
     return (
-        <div>
+        <div >
             <h1>What's the Plan for Today?</h1>
             <TodoForm onSubmit={addTodo}/>
             <Todo

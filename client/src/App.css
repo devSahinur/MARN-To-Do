@@ -5,8 +5,13 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
       'Lucida Sans', Arial, sans-serif;
   }
+
+body::-webkit-scrollbar{
+  width: 0;
+}
   
   body {
+    height: 100vh !important;
     background: linear-gradient(
       90deg,
       rgba(48, 16, 255, 1) 0%,
@@ -23,6 +28,7 @@
     text-align: center;
     margin: 128px auto;
     border-radius: 10px;
+    overflow: hidden;
     padding-bottom: 32px;
   }
   
@@ -146,3 +152,11 @@
     color: #fff;
   }
   
+  .allTodo{
+    max-height: 60vh;
+    overflow-y: scroll;
+
+  }
+  .allTodo::-webkit-scrollbar{
+    width: 0;
+  }

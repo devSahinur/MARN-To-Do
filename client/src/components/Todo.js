@@ -40,7 +40,7 @@ const Todo = ({ allTodo, completeTodo, setAllTodo, updateTodo }) => {
   }
 
     return (
-        <>
+        <div className='allTodo'>
             {
                 allTodo?.map((todo) => ( 
                 <div
@@ -62,7 +62,7 @@ const Todo = ({ allTodo, completeTodo, setAllTodo, updateTodo }) => {
                     </div>
                   </div>))
             }
-        </>
+        </div>
     );
 };
 
